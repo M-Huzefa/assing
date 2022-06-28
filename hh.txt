@@ -1,0 +1,114 @@
+using System;
+
+namespace MyApp // Note: actual namespace depends on the project name.
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            // LargestElements();
+            // Multiplication();
+            // Oddpositions();
+            // IsPrime();
+            // Pattern();
+            NumPattern();
+        }
+        static void LargestElements()
+        {
+            int [] Array = {1,42,4,2,112,7,8,6,54,43};
+            int count = 1;
+            int largestelements = Array[0];
+            while(count < Array.Length)
+            {
+                if(Array[count] > largestelements)
+                {
+                    largestelements = Array[count];
+                }
+                count ++;
+            }
+            Console.WriteLine(largestelements);
+        }
+        static void Multiplication()
+        {
+            Console.Write("Enter the number you want to multiply : ");
+            int Number = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Need table upto : ");
+            int Number1 = Convert.ToInt32(Console.ReadLine());
+            int count = 1;
+            while(count <= Number1)
+            {
+                Console.WriteLine(Number*count);
+                count ++;
+            }
+        }
+        static void Oddpositions()
+        {
+            int [] Array = {1,42,4,2,112,7,8,6,54,43,87};
+            int count = 1;
+            while (count < Array.Length)
+            {
+                Console.WriteLine(Array[count]);
+                count += 2;
+            }
+        }
+        static void IsPrime()
+        {
+            Console.Write("Enter the number : ");
+            int Number = Convert.ToInt32(Console.ReadLine());
+            int count = 1;
+            int divided = 0;
+            while(count < Number)
+            {
+                if(Number%count == 0)
+                {
+                    divided += 1;
+                }
+                count ++;
+            }
+            // Console.WriteLine(divided);
+            if(divided == 1)
+            {
+                Console.WriteLine("Number is Prime");
+            }
+            else
+            {
+                Console.WriteLine("Number is Not Prime");
+            }
+        }
+        static void Pattern()
+        {
+            // string star = "*";
+            int count = 1;
+            while (count<=5)
+            {
+                for(int i = 1; i<=count; i++)
+                {
+                    Console.WriteLine("* ");
+                }
+                Console.WriteLine();
+                count++;
+            }
+        }
+        static void NumPattern()
+        {
+            int count = 1;
+            while (count<=5)
+            {
+                for(int num = 1; num<=count; num++)
+                {
+                    Console.WriteLine(num);
+                }
+                Console.WriteLine();
+                count++;
+            }
+        }
+
+        static void palindrome()
+        {
+            // Console.Write("Enter the string : ");
+            // string str = (Console.ReadLine());
+            string str = "noon";
+            string rstr = str[::-1];
+        }
+    }
+}
