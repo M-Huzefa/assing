@@ -1,114 +1,112 @@
 using System;
 
-namespace MyApp // Note: actual namespace depends on the project name.
+namespace car_parking_calculator
 {
-    internal class Program
+    class Vehicle
+    {
+        protected double initial;
+        protected double increment;
+        protected double maximum;
+        public double[] hours;
+
+        
+        public Vehicle(params double[] hours)
+
+        {
+            this.hours = hours;
+        }
+
+        public double Calculator (double time)
+        {
+            double total;
+            if (time>0 && time <= 3)
+            {
+                return initial;
+            }
+            if (time >= 3)
+            {
+                total = initial + increment * (time - 3);
+                if (total > maximum)
+                {
+                    return maximum;
+                }
+                else
+                {
+                    return total;
+                }
+            }
+            return 0.0;
+        }
+    }
+
+    class Bus : Vehicle
+    {
+        public Bus(params double[] hours):base(hours)
+        {
+            initial = 6;
+            increment = 1.5;
+            maximum = 30;
+        }
+    }
+
+    class Car : Vehicle
+    {
+        public Car(params double[] hours) : base(hours)
+        {
+            initial = 4;
+            increment = 1;
+            maximum = 20;
+        }
+    }
+
+    class Bike : Vehicle
+    {
+        public Bike(params double[] hours) : base(hours)
+        {
+            initial = 2;
+            increment = 0.5;
+            maximum = 10;
+        }
+    }
+
+
+    class Program
     {
         static void Main(string[] args)
         {
-            // LargestElements();
-            // Multiplication();
-            // Oddpositions();
-            // IsPrime();
-            // Pattern();
-            NumPattern();
+            //Vehicle bus = new Bus();
+            //Vehicle car = new Car();
+            //Vehicle bike = new Bike();
+            //Console.WriteLine("In case of Bus: ");
+            //bus.Calculator(24,5,1);
+            //bus.Calculator(5);
+            //bus.Calculator(1);
+            //Console.WriteLine(); Console.WriteLine("In case of Car: ");
+            //car.Calculator(24);
+            //car.Calculator(5);
+            //car.Calculator(1);
+            //Console.WriteLine(); Console.WriteLine("In case of Bike: ");
+            //bike.Calculator(24);
+            //bike.Calculator(5);
+            //bike.Calculator(1);
+            Vehicle a = new Bike(24,5,1,4,8); 
+            Vehicle b = new Car(24,5,1,4,8); 
+            Vehicle c = new Bus(24,5,1,4,8);
+            Console.WriteLine("for bike \n");
+            PrintFee(a);
+            Console.WriteLine("for Car \n");
+            PrintFee(b);
+            Console.WriteLine("for Bus \n");
+            PrintFee(c);
         }
-        static void LargestElements()
+        static void PrintFee(Vehicle v)
         {
-            int [] Array = {1,42,4,2,112,7,8,6,54,43};
-            int count = 1;
-            int largestelements = Array[0];
-            while(count < Array.Length)
+            foreach(double h in v.hours)
             {
-                if(Array[count] > largestelements)
-                {
-                    largestelements = Array[count];
-                }
-                count ++;
+                double cal = v.Calculator(h);
+                Console.WriteLine("parking fee for "+h+" is "+cal );
             }
-            Console.WriteLine(largestelements);
-        }
-        static void Multiplication()
-        {
-            Console.Write("Enter the number you want to multiply : ");
-            int Number = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Need table upto : ");
-            int Number1 = Convert.ToInt32(Console.ReadLine());
-            int count = 1;
-            while(count <= Number1)
-            {
-                Console.WriteLine(Number*count);
-                count ++;
-            }
-        }
-        static void Oddpositions()
-        {
-            int [] Array = {1,42,4,2,112,7,8,6,54,43,87};
-            int count = 1;
-            while (count < Array.Length)
-            {
-                Console.WriteLine(Array[count]);
-                count += 2;
-            }
-        }
-        static void IsPrime()
-        {
-            Console.Write("Enter the number : ");
-            int Number = Convert.ToInt32(Console.ReadLine());
-            int count = 1;
-            int divided = 0;
-            while(count < Number)
-            {
-                if(Number%count == 0)
-                {
-                    divided += 1;
-                }
-                count ++;
-            }
-            // Console.WriteLine(divided);
-            if(divided == 1)
-            {
-                Console.WriteLine("Number is Prime");
-            }
-            else
-            {
-                Console.WriteLine("Number is Not Prime");
-            }
-        }
-        static void Pattern()
-        {
-            // string star = "*";
-            int count = 1;
-            while (count<=5)
-            {
-                for(int i = 1; i<=count; i++)
-                {
-                    Console.WriteLine("* ");
-                }
-                Console.WriteLine();
-                count++;
-            }
-        }
-        static void NumPattern()
-        {
-            int count = 1;
-            while (count<=5)
-            {
-                for(int num = 1; num<=count; num++)
-                {
-                    Console.WriteLine(num);
-                }
-                Console.WriteLine();
-                count++;
-            }
-        }
-
-        static void palindrome()
-        {
-            // Console.Write("Enter the string : ");
-            // string str = (Console.ReadLine());
-            string str = "noon";
-            string rstr = str[::-1];
+            Console.WriteLine("\n");
         }
     }
 }
